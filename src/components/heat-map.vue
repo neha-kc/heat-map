@@ -93,9 +93,7 @@ export default defineComponent({
     //FUNCTION TO DISPLAY HEATMAP
     function displayHeatMap() {
       const Dateformatter = new Intl.DateTimeFormat("en-CA");
-      const Monthformatter = new Intl.DateTimeFormat("en-CA", {
-        month: "short",
-      });
+
       let startDate = new Date(changes.startDate) as Date;
       let endDate = new Date(changes.endDate) as Date;
       let counts = changes.counts as Record<string, number>;
@@ -160,7 +158,7 @@ export default defineComponent({
         return color;
       };
 
-      //GET CHANGES
+      //GET CHANGES DETAILS
       let getChanges = (date: Date) => {
         let tempDate = Dateformatter.format(date) as string;
         let count = 0;
@@ -201,7 +199,7 @@ export default defineComponent({
       let weekLabel = document.createElement("div");
       weekLabel.className = "weekLabel";
 
-      //ATTACHING WEEK LABELS
+      //CREATING AND APPENDEING WEEK LABELS
       week.map((weekDay, index) => {
         let weekName = document.createElement("div");
         weekName.className = "week-label";
@@ -212,7 +210,7 @@ export default defineComponent({
       });
       calenderDiv.append(weekLabel);
 
-      //ATTACHING MONTH LABLES
+      //CREATING AND APPENDEING MONTH LABLES
       let monthlyDiv = document.getElementById("monthly-div") as HTMLElement;
       for (let i = startDate.getUTCMonth(); i < months; i++) {
         let monthlyLabel = document.createElement("div");
@@ -266,7 +264,7 @@ export default defineComponent({
         date.setDate(date.getDate() + 1);
       }
     }
-    // provide("details", details);
+
     return {
       displayHeatMap,
       fetchData,
